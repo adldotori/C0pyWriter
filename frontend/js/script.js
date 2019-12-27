@@ -1,5 +1,3 @@
-var API_URL = "";
-
 function uploadFile() {
   String.prototype.replaceAll = function (org, dest) {
     return this.split(org).join(dest);
@@ -17,8 +15,11 @@ function uploadFile() {
   const reader = new FileReader();
   reader.addEventListener('loadend', (e) => {
     const text = e.srcElement.result.replaceAll('\n', '');
-
-    console.log(text);
+    $.post(API_URL, {
+      'text': text
+    }, function (data) {
+      console.log(data);
+    });
   });
 
   var xhttp = new XMLHttpRequest();
