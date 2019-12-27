@@ -51,32 +51,38 @@ function uploadText() {
   $('.lds-hourglass').show();
   event.preventDefault();
 
-  const reader = new FileReader();
-  reader.addEventListener('loadend', (e) => {
-    const text = e.srcElement.result.replaceAll('\n', '');
-    $.post(API_URL, {
-      'text': text
-    }, function (data) {
-      console.log(data);
-    });
-  });
+  var text = jQuery("#text").val();
 
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function () {
-    var a;
-    if (xhttp.readyState === 4 && xhttp.status === 200) {
-      a = document.createElement("a");
-      a.href = window.URL.createObjectURL(xhttp.response);
-      reader.readAsText(xhttp.response);
-      // console.log(xhttp.responseText);
-      a.download = "sample.txt";
-      a.style.display = "none";
-      document.body.appendChild(a);
-      a.click();
-      $('.lds-hourglass').hide();
-    }
-  };
-  xhttp.open("POST", "http://api2.pdfextractoronline.com:8089/tab2ex2/api");
-  xhttp.responseType = "blob";
-  xhttp.send(formData);
+  $.post(API_URL, {
+    'text': text,
+  }, function (data) {
+    console.log(data);
+    $('.lds-hourglass').hide();
+  });
 };
+
+// const reader = new FileReader();
+// reader.addEventListener('loadend', (e) => {
+//   const text = e.srcElement.result.replaceAll('\n', '');
+//   $.post(API_URL, {
+//     'text': text
+//   }, function (data) {
+//     console.log(data);
+//   });
+// });
+
+// var xhttp = new XMLHttpRequest();
+// xhttp.onreadystatechange = function () {
+//   var a;
+//   if (xhttp.readyState === 4 && xhttp.status === 200) {
+//     a = document.createElement("a");
+//     a.href = window.URL.createObjectURL(xhttp.response);
+//     reader.readAsText(xhttp.response);
+//     // console.log(xhttp.responseText);
+//     a.download = "sample.txt";
+//     a.style.display = "none";
+//     document.body.appendChild(a);
+//     a.click();
+//     $('.lds-hourglass').hide();
+//   }
+// };
