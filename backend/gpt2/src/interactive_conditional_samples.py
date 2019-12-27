@@ -42,21 +42,23 @@ def interact_model(
      :models_dir : path to parent folder containing model subfolders
      (i.e. contains the <model_name> folder)
     """
-    models_dir = 'gpt2/models/'
 
-    if batch_size is None:
-        batch_size = 1
-    assert nsamples % batch_size == 0
+    with tf.device("/gpu:0"):
+        models_dir = 'gpt2/models/'
 
-    enc = encoder.get_encoder(model_name, models_dir)
-    hparams = model.default_hparams()
-    with open(os.path.join(models_dir, model_name, 'hparams.json')) as f:
-        hparams.override_from_dict(json.load(f))
+        if batch_size is None:
+            batch_size = 1
+        assert nsamples % batch_size == 0
 
-    if length is None:
-        length = hparams.n_ctx // 2
-    elif length > hparams.n_ctx:
-        raise ValueError("Can't get samples longer than window size: %s" % hparams.n_ctx)
+        enc = encoder.get_encoder(model_name, models_dir)
+        hparams = model.default_hparams()
+        with open(os.path.join(models_dir, model_name, 'hparams.json')) as f:
+            hparams.override_from_dict(json.load(f))
+
+        if length is None:
+            length = hparams.n_ctx // 2
+        elif length > hparams.n_ctx:
+            raise ValueError("Can't get samples longer than window size: %s" % hparams.n_ctx)
 
     with tf.Session(graph=tf.Graph()) as sess:
         context = tf.placeholder(tf.int32, [batch_size, None])
