@@ -10,7 +10,12 @@ from rest_framework.decorators import api_view
 def complete(request):
     if request.method == "POST":
         text = request.data['text']
-        return Response({'text': interact_model(raw_text=text)})
+        result = interact_model(raw_text=text, length=min(len(text) // 10, 100))
+        try:
+            result = result.split('|endoftext|')[0]
+        except:
+            pass
+        return Response({'text': interact_model(raw_text=text, length=min(len(text) // 10, 100))})
 
 
 @csrf_exempt
@@ -19,5 +24,8 @@ def summary(request):
     if request.method == "POST":
         text = request.data['text']
         text = text + '\nTL;DR:'
-        print(text)
-        return Response({'text': interact_model(raw_text=text)})
+        try:
+            result = result.split('|endoftext|')[0]
+        except:
+            pass
+        return Response({'text': interact_model(raw_text=text, length=min(len(text) // 10, 100))})

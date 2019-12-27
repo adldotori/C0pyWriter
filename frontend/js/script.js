@@ -18,7 +18,8 @@ function uploadFile() {
     $.post(API_URL, {
       'text': text
     }, function (data) {
-      $('.result').append(data);
+      console.log(data['text']);
+      $('.result').text(data['text']);
       $('.lds-hourglass').hide();
       $('.result-section').show();
     });
@@ -57,33 +58,9 @@ function uploadText() {
   $.post(API_URL, {
     'text': text,
   }, function (data) {
-    console.log(data);
+    $('.result').text(data['text']);
+    console.log(data['text']);
     $('.lds-hourglass').hide();
+    $('.result-section').show();
   });
 };
-
-// const reader = new FileReader();
-// reader.addEventListener('loadend', (e) => {
-//   const text = e.srcElement.result.replaceAll('\n', '');
-//   $.post(API_URL, {
-//     'text': text
-//   }, function (data) {
-//     console.log(data);
-//   });
-// });
-
-// var xhttp = new XMLHttpRequest();
-// xhttp.onreadystatechange = function () {
-//   var a;
-//   if (xhttp.readyState === 4 && xhttp.status === 200) {
-//     a = document.createElement("a");
-//     a.href = window.URL.createObjectURL(xhttp.response);
-//     reader.readAsText(xhttp.response);
-//     // console.log(xhttp.responseText);
-//     a.download = "sample.txt";
-//     a.style.display = "none";
-//     document.body.appendChild(a);
-//     a.click();
-//     $('.lds-hourglass').hide();
-//   }
-// };
