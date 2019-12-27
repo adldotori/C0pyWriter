@@ -1,6 +1,10 @@
 var API_URL = "";
 
 function uploadFile() {
+  String.prototype.replaceAll = function (org, dest) {
+    return this.split(org).join(dest);
+  }
+
   console.log("hihi");
   event.preventDefault();
   var formData = new FormData();
@@ -10,16 +14,24 @@ function uploadFile() {
   formData.append("outputFormat", "TXT");
   formData.append("file", jQuery("#pdf").get(0).files[0]);
 
+  const reader = new FileReader();
+  reader.addEventListener('loadend', (e) => {
+    const text = e.srcElement.result.replaceAll('\n', '');
+
+    console.log(text);
+  });
+
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     var a;
     if (xhttp.readyState === 4 && xhttp.status === 200) {
       a = document.createElement("a");
       a.href = window.URL.createObjectURL(xhttp.response);
+      reader.readAsText(xhttp.response);
+      // console.log(xhttp.responseText);
       a.download = "sample.txt";
       a.style.display = "none";
       document.body.appendChild(a);
-      a.click();
     }
   };
   xhttp.open("POST", "http://api2.pdfextractoronline.com:8089/tab2ex2/api");
