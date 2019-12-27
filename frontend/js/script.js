@@ -1,7 +1,12 @@
 var API_URL = "";
 
+<<<<<<< Updated upstream
 jQuery("#pdf-form").submit(function(event) {
   console.log("hihi");
+=======
+function uploadFile() {
+  $('.lds-hourglass').show();
+>>>>>>> Stashed changes
   event.preventDefault();
   var formData = new FormData();
   formData.append("tab2exkey", "740.3FC485BF078F7CF4");
@@ -20,6 +25,7 @@ jQuery("#pdf-form").submit(function(event) {
       a.style.display = "none";
       document.body.appendChild(a);
       a.click();
+      $('.lds-hourglass').hide();
     }
   };
   xhttp.open("POST", "http://api2.pdfextractoronline.com:8089/tab2ex2/api");
