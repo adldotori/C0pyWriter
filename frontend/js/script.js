@@ -2,8 +2,7 @@ function uploadFile() {
   String.prototype.replaceAll = function (org, dest) {
     return this.split(org).join(dest);
   }
-
-function uploadFile() {
+  
   $('.lds-hourglass').show();
   event.preventDefault();
   var formData = new FormData();
