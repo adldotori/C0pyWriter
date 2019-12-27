@@ -49,11 +49,11 @@
           <h1 class="mb-5">글 자동 완성하기</h1>
         </div>
       <form id="text-form" method="post" enctype="multipart/form-data" action="">
-          <div class="form-column text-center">
-            <div class="col-12 col-md-9 mb-2 mb-md-0">
-              <textarea id="text" rows="10" class="form-control form-control-lg" placeholder="요약할 pdf 파일을 찾으세요..." ></textarea>
+          <div class="form-column text-center justify-content-center">
+            <div class="col-12 col-md-9 mb-2 mb-md-0" style="margin:0 auto">
+              <textarea id="text" rows="10" class="form-control form-control-lg" placeholder="보고서의 서론을 적어주세요!" ></textarea>
             </div>
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3" style="margin:0 auto; margin-top: 20px">
               <div class="btn btn-block btn-lg btn-primary" onclick="javascript:uploadText();">업로드</div>
             </div>
           </div>
@@ -65,7 +65,26 @@
         $('.lds-hourglass').hide();
       </script>
   </header>
+  <section class="result-section bg-light text-color text-center">
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-xl-9 mx-auto">
+          <h1>Result</h1>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="result col-xl-6">
 
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    $('.lds-hourglass').hide();
+    $('.result-section').hide();
+  </script>
+  
   <!-- Icons Grid -->
   <section class="features-icons bg-light text-center">
     <div class="container">
