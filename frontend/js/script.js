@@ -18,8 +18,9 @@ function uploadFile() {
     $.post(API_URL, {
       'text': text
     }, function (data) {
-      console.log(data);
+      $('.result').append(data);
       $('.lds-hourglass').hide();
+      $('.result-section').show();
     });
   });
 
