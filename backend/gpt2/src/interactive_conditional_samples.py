@@ -83,7 +83,7 @@ def interact_model(
                 generated += 1
                 text = enc.decode(out[i])
                 print(text)
-                return text
+                return str(text)
 
         # while True:
         #     raw_text = input("Model prompt >>> ")
