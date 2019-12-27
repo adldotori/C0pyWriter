@@ -47,18 +47,17 @@
         <div class="col-xl-9 mx-auto">
           <h1 class="mb-5">긴 글 요약하기</h1>
         </div>
-        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-          <form id="pdf-form">
-            <div class="form-row">
-              <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input id="user-file" accept="application/pdf" type="file" class="form-control form-control-lg" placeholder="요약할 pdf 파일을 찾으세요..." >
-
-              </div>
-              <div class="col-12 col-md-3">
-                <button type="submit" class="btn btn-block btn-lg btn-primary">업로드</button>
-              </div>
+        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">        
+        <form id="pdf-form" method="post" enctype="multipart/form-data" action="">
+          <div class="form-row">
+            <div class="col-12 col-md-9 mb-2 mb-md-0">
+              <input id="pdf" accept="application/pdf" type="file" class="form-control form-control-lg" placeholder="요약할 pdf 파일을 찾으세요..." >
             </div>
-          </form>
+            <div class="col-12 col-md-3">
+              <div class="btn btn-block btn-lg btn-primary" onclick="javascript:uploadFile();">업로드</div>
+            </div>
+          </div>
+        </form>
         </div>
       </div>
     </div>
@@ -148,7 +147,6 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 </body>
 
 </html>
