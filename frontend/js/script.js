@@ -3,7 +3,16 @@ function uploadFile() {
     return this.split(org).join(dest);
   }
 
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+jQuery("#pdf-form").submit(function(event) {
+>>>>>>> backend
   console.log("hihi");
+=======
+function uploadFile() {
+  $('.lds-hourglass').show();
+>>>>>>> Stashed changes
   event.preventDefault();
   var formData = new FormData();
   formData.append("tab2exkey", "740.3FC485BF078F7CF4");
@@ -33,6 +42,11 @@ function uploadFile() {
       a.download = "sample.txt";
       a.style.display = "none";
       document.body.appendChild(a);
+<<<<<<< HEAD
+=======
+      a.click();
+      $('.lds-hourglass').hide();
+>>>>>>> backend
     }
   };
   xhttp.open("POST", "http://api2.pdfextractoronline.com:8089/tab2ex2/api");

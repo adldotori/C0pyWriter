@@ -19,4 +19,5 @@ def summary(request):
     if request.method == "POST":
         text = request.data['text']
         text = text + '\nTL;DR:'
+        print(text)
         return Response({'text': interact_model(raw_text=text)})
