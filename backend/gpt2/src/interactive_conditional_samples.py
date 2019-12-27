@@ -12,7 +12,7 @@ import gpt2.src.encoder as encoder
 
 def interact_model(
     raw_text,
-    model_name='124M',
+    model_name='1558M',
     seed=None,
     nsamples=1,
     batch_size=1,
@@ -43,7 +43,7 @@ def interact_model(
      (i.e. contains the <model_name> folder)
     """
     models_dir = 'gpt2/models/'
-    print(model_name, models_dir)
+
     if batch_size is None:
         batch_size = 1
     assert nsamples % batch_size == 0
@@ -82,6 +82,7 @@ def interact_model(
             for i in range(batch_size):
                 generated += 1
                 text = enc.decode(out[i])
+                print(text)
                 return text
 
         # while True:
