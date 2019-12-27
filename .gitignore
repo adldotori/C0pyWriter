@@ -2,3 +2,5 @@ venv/
 .python-version
 .vscode
 __pycache__/
+models/
+.mypy_cache/
