@@ -15,7 +15,7 @@ def interact_model(
     model_name='1558M',
     seed=None,
     nsamples=1,
-    batch_size=1,
+    batch_size=100,
     length=None,
     temperature=1,
     top_k=0,
@@ -42,6 +42,10 @@ def interact_model(
      :models_dir : path to parent folder containing model subfolders
      (i.e. contains the <model_name> folder)
     """
+    ## LIMIT GPU USAGE
+    config = tf.ConfigProto()  
+    config.gpu_options.allow_growth = True  # don't pre-allocate memory; allocate as-needed
+    config.gpu_options.per_process_gpu_memory_fraction = 0.95  # limit memory to be allocated
 
     with tf.device("/gpu:0"):
         models_dir = 'gpt2/models/'
@@ -78,6 +82,7 @@ def interact_model(
         context_tokens = enc.encode(raw_text)
         generated = 0
         for _ in range(nsamples // batch_size):
+            print(_)
             out = sess.run(output, feed_dict={
                 context: [context_tokens for _ in range(batch_size)]
             })[:, len(context_tokens):]
