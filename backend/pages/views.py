@@ -15,7 +15,7 @@ def complete(request):
             result = result.split('|endoftext|')[0]
         except:
             pass
-        return Response({'text': interact_model(raw_text=text, length=min(len(text) // 10, 100))})
+        return Response({'text': result})
 
 
 @csrf_exempt
@@ -24,8 +24,9 @@ def summary(request):
     if request.method == "POST":
         text = request.data['text']
         text = text + '\nTL;DR:'
+        result = interact_model(raw_text=text, length=min(len(text) // 10, 100))
         try:
             result = result.split('|endoftext|')[0]
         except:
             pass
-        return Response({'text': interact_model(raw_text=text, length=min(len(text) // 10, 100))})
+        return Response({'text': result})
