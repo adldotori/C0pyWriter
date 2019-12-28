@@ -36,7 +36,7 @@ function uploadFile() {
         a.download = "sample.txt";
         a.style.display = "none";
         document.body.appendChild(a);
-        a.click();
+        // a.click();
       });
     }
   };
